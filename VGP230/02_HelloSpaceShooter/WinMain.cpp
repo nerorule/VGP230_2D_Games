@@ -1,13 +1,21 @@
 #include <XEngine.h>
-#include "Ship.h"
+#include "StartState.h"
+#include "RunGameState.h"
+#include "EndState.h"
 
-Ship mShip;
-
-
+State gActiveState = State::Start;
+GameState* gCurrentGameState = nullptr;
+std::map<State, GameState*> gGameStates;
 // Game setup
 void GameInit()
 {
-	mShip.Load();
+	gGameStates[State::Start] = new StartState();
+	gGameStates[State::RunGame] = new RunGameState();
+	gGameStates[State::End] = new EndState();
+	gActiveState = State::Start;
+
+	gCurrentGameState = gGameStates[gActiveState];
+	gCurrentGameState->Load();
 }
 
 void GameRender()
@@ -18,15 +26,28 @@ void GameRender()
 // Per-frame logic
 bool GameLoop(float deltaTime)
 {
-	mShip.Update(deltaTime);
-	mShip.Render();
+	State newState = gGameStates[gActiveState]->Update(deltaTime);
+	gCurrentGameState->Render();
+	if (newState != gActiveState)
+	{
+		
+		gCurrentGameState->Unload();
+		gCurrentGameState = gGameStates[newState];
+		gCurrentGameState->Load();
+		gActiveState = newState;
+	}
 	// Exit if Escape is pressed
 	return X::IsKeyPressed(X::Keys::ESCAPE);
 }
 
 void GameCleanup()
 {
-	mShip.Unload();
+	gCurrentGameState->Unload();
+	for (auto& state : gGameStates)
+	{
+		delete state.second;
+	}
+	gGameStates.clear();
 }
 
 // Main function
