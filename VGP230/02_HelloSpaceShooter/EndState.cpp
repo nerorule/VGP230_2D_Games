@@ -26,11 +26,11 @@ State EndState::Update(float deltaTime)
 void EndState::Render()
 {
 	const float textSize = 100.0f;
-	const char* text = "nice";
+	const char* text = "Game Over! \n <Press Escape to exit>";
 	float textWidth = X::GetTextWidth(text, textSize);
 	float screenX = (X::GetScreenWidth() - textWidth) * 0.5f;
 	float screenY = X::GetScreenHeight() * 0.5f;
-	X::DrawScreenText(text, screenX, screenY, textSize, X::Colors::Green);
+	X::DrawScreenText(text, screenX, screenY, textSize, X::Colors::DarkRed);
 }
 void EndState::Unload()
 {

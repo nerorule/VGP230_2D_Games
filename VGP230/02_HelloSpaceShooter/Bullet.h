@@ -17,6 +17,10 @@ public:
 	void SetEntityType(EntityType entitytype);
 	bool IsActive() const;
 
+	// damage API
+	void SetDamage(int dmg);
+	int GetDamage() const;
+
 	int GetType() const override;
 	const X::Math::Vector2& GetPosition() const override;
 	void OnCollision(Collidable* collidable) override;
@@ -26,4 +30,5 @@ private:
 	float mRotation;
 	float mLifeTime;
 	EntityType mBulletType;
+	int mDamage;
 };

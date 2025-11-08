@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include "Ship.h"
 
 Bullet::Bullet()
 	: Entity()
@@ -7,12 +8,14 @@ Bullet::Bullet()
 	, mPosition(0.0f)
 	, mRotation(0.0f)
 	, mLifeTime(0.0f)
+	, mBulletType(ET_NONE)
+	, mDamage(10)
 {
-	
+
 }
 Bullet::~Bullet()
 {
-	
+
 }
 void Bullet::Load()
 {
@@ -27,7 +30,7 @@ void Bullet::Update(float deltaTime)
 		mPosition += X::Math::Vector2::Forward(mRotation) * speed * deltaTime;
 		if (!IsActive())
 		{
-			SetCollisionFilter(ET_NONE); 
+			SetCollisionFilter(ET_NONE);
 		}
 	}
 }
@@ -70,9 +73,20 @@ bool Bullet::IsActive() const
 	return mLifeTime > 0.0f;
 }
 
+void Bullet::SetDamage(int dmg)
+{
+	mDamage = dmg;
+}
+
+int Bullet::GetDamage() const
+{
+	return mDamage;
+}
+
 int Bullet::GetType() const
 {
-	return ET_BULLET_PLAYER;
+	// return the runtime bullet type (player or enemy)
+	return static_cast<int>(mBulletType);
 }
 
 const X::Math::Vector2& Bullet::GetPosition() const
@@ -82,6 +96,17 @@ const X::Math::Vector2& Bullet::GetPosition() const
 
 void Bullet::OnCollision(Collidable* collidable)
 {
+	// If we hit a ship that currently has a shield, do not consume the bullet and do not interact.
+	if (collidable != nullptr && collidable->GetType() == ET_SHIP)
+	{
+		Ship* ship = dynamic_cast<Ship*>(collidable);
+		if (ship && ship->IsShieldActive())
+		{
+			// ignore collision (bullet passes through)
+			return;
+		}
+	}
+
 	mLifeTime = 0.0f;
 	SetCollisionFilter(ET_NONE);
 }

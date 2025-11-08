@@ -118,6 +118,19 @@ void Enemy::OnCollision(Collidable* collidable)
 		{
 			damage = mHealth;
 		}
+		else if (collidable->GetType() == ET_BULLET_PLAYER)
+		{
+			// use bullet damage if available
+			Bullet* bullet = dynamic_cast<Bullet*>(collidable);
+			if (bullet != nullptr)
+			{
+				damage = bullet->GetDamage();
+			}
+			else
+			{
+				damage = 10;
+			}
+		}
 		else
 		{
 			damage = 10;

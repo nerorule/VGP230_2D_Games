@@ -32,7 +32,7 @@ class Enemy : public Entity, public Collidable
 
 		bool IsAlive() const;
 
-private:
+protected:
 	BulletPool* mBulletPool;
 	Ship* mShip;
 	AnimSpriteSheet* mExplosion;

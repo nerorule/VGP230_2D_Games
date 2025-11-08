@@ -133,12 +133,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimSpriteSheet.cpp" />
+    <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="Collidable.cpp" />
     <ClCompile Include="EndState.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="RunGameState.cpp" />
     <ClCompile Include="Ship.cpp" />
@@ -150,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimSpriteSheet.h" />
+    <ClInclude Include="BossEnemy.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletPool.h" />
     <ClInclude Include="Collidable.h" />
@@ -159,6 +162,7 @@
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="RunGameState.h" />
     <ClInclude Include="Ship.h" />
