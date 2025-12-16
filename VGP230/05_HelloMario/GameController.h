@@ -15,6 +15,8 @@ public:
 	// Return player's world position for other systems (e.g. enemies)
 	const X::Math::Vector2& GetPlayerPosition() const;
 
+	X::SoundId mMusicId = 0;
+
 private:
 	GameController();
 	static GameController* mInstance;

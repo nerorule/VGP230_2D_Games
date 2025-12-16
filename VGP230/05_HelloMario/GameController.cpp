@@ -9,6 +9,7 @@ GameController* GameController::mInstance = nullptr;
 
 GameController::GameController()
 	: Entity()
+	, mMusicId(0)
 {
 }
 GameController::~GameController()
@@ -35,6 +36,12 @@ void GameController::Load()
 
 	mPlayer.Load();
 
+	// Load and start background music (looping).
+	mMusicId = X::LoadSound("Background_2.wav");
+	if (mMusicId != 0)
+	{
+		X::PlaySoundLoop(mMusicId);
+	}
 }
 void GameController::Update(float deltaTime)
 {
