@@ -23,8 +23,15 @@ public:
 	void SetVelocity(const X::Math::Vector2& velocity);
 	void SetPosition(const X::Math::Vector2& velocity);
 	const X::Math::Vector2& GetVelocity() const;
+	// apply damage to player
+	void TakeDamage(int amount);
+	// add ammo to player (clamped to max)
+	void AddAmmo(int amount);
+	int GetAmmo() const;
+	int GetMaxAmmo() const;
+	int GetHealth() const;
+	int GetMaxHealth() const;
 
-	
 private:
 	X::TextureId mImageId;
 	X::Math::Vector2 mPosition;
@@ -32,4 +39,13 @@ private:
 	X::Math::Rect mPlayerRect;
 	int mHealth;
 	bool mRemoveCollider;
+	X::Math::Vector2 mFacing;
+
+	// shooting cooldown (seconds)
+	float mShootCooldownTimer;
+	static constexpr float kShootCooldown = 0.5f;
+	// ammo
+	int mAmmo;
+	static constexpr int kMaxAmmo = 10;
+	static constexpr int kMaxHealth = 100;
 };

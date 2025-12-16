@@ -17,10 +17,10 @@ void Tile::Load()
 {
 	switch (mTileType)
 	{
-	case TT_GROUND:mImageId = X::LoadTexture("green.jpg");break;
-	case TT_WALL:mImageId = X::LoadTexture("purple.jpg");break;
-	case TT_WATER:mImageId = X::LoadTexture("cyan.jpg");break;
-	case TT_DOOR:mImageId = X::LoadTexture("tiles/door.png");break;
+	case TT_GROUND:mImageId = X::LoadTexture("Tileset_Ground.png");break;
+	case TT_WALL:mImageId = X::LoadTexture("Trees_Swap.png");break;
+	case TT_WATER:mImageId = X::LoadTexture("Tileset_Water.png");break;
+	case TT_DOOR:mImageId = X::LoadTexture("Flowers.png");break;
 	default:
 		XASSERT(false, "Unknown tile type");
 	}

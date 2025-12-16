@@ -22,4 +22,8 @@ private:
 
 	std::vector<Enemy*> mEnemies;
 	int mNextAvailableIndex;
+	// Wave spawn state
+	float mWaveTimer;
+	static constexpr float kWaveInterval = 5.0f; // seconds between waves
+	static constexpr int   kWaveSize = 5;         // enemies
 };

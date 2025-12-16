@@ -16,6 +16,7 @@ public:
 
 	// Pickup Manager functions
 	void SpawnPickup(int count);
+	void SpawnPickupAt(const X::Math::Vector2 & position);
 private:
 	PickupManager();
 	static PickupManager* mInstance;

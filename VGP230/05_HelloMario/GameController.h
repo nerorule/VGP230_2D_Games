@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Entity.h"
 #include "Player.h"
 
@@ -13,6 +11,10 @@ public:
 	void Update(float deltaTime) override;
 	void Render() override;
 	void Unload() override;
+
+	// Return player's world position for other systems (e.g. enemies)
+	const X::Math::Vector2& GetPlayerPosition() const;
+
 private:
 	GameController();
 	static GameController* mInstance;

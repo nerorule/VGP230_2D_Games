@@ -34,14 +34,20 @@ bool Collidable::DidCollide(const Collidable* collidable) const
 		return false;
 	}
 
-	int collidableFilter = collidable->GetCollisionFilter();
-	int collisionFilter = GetCollisionFilter();
-	if (collidable == 0 || collisionFilter == 0)
+	int otherFilter = collidable->GetCollisionFilter();
+	int myFilter = GetCollisionFilter();
+
+	// If either filter is zero, treat as non-collidable
+	if (otherFilter == 0 || myFilter == 0)
 	{
 		return false;
 	}
 
-	if (collidableFilter < 0 || collisionFilter < 0 || (collidableFilter & GetType()) > 0)
+	// Allow collision if either object is interested in the other's type
+	bool filtersAllow = ((myFilter & collidable->GetType()) != 0) ||
+		((otherFilter & GetType()) != 0);
+
+	if (filtersAllow)
 	{
 		return X::Math::Intersect(mRect, collidable->GetRect());
 	}

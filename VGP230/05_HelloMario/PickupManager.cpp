@@ -118,3 +118,14 @@ void PickupManager::SpawnPickup(int count)
 		}
 	}
 }
+void PickupManager::SpawnPickupAt(const X::Math::Vector2& position)
+{
+	for (Pickup* pickup : mPickups)
+	{
+		if (!pickup->IsActive())
+		{
+			pickup->SetActive(position);
+			break;
+		}
+	}
+}

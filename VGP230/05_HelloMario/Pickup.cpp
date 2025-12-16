@@ -1,5 +1,6 @@
 #include "Pickup.h"
 #include "CollisionManager.h"
+#include "Player.h"
 
 Pickup::Pickup()
 	: Entity()
@@ -17,7 +18,7 @@ Pickup::~Pickup()
 
 void Pickup::Load()
 {
-	mImageId = X::LoadTexture("qmark.png");
+	mImageId = X::LoadTexture("ammunition.png");
 	mIsActive = false;
 	mRemoveCollider = false;
 }
@@ -51,11 +52,16 @@ int Pickup::GetType() const
 
 void Pickup::OnCollision(Collidable* collidable)
 {
-	// Do not remove collidables during this function
 	if (mIsActive)
 	{
-		mIsActive = false;
-		mRemoveCollider = true;
+	// give ammo to the player if collided with one
+	Player * player = dynamic_cast<Player*>(collidable);
+	if (player)
+	{
+		player->AddAmmo(5);
+	}
+	mIsActive = false;
+	mRemoveCollider = true;
 	}
 }
 
