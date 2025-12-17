@@ -24,6 +24,6 @@ private:
 	int mNextAvailableIndex;
 	// Wave spawn state
 	float mWaveTimer;
-	static constexpr float kWaveInterval = 5.0f; // seconds between waves
-	static constexpr int   kWaveSize = 5;         // enemies
+	float kWaveInterval = 6.0f; // seconds between waves
+	int   kWaveSize = 5;         // enemies
 };

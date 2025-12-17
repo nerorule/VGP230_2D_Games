@@ -24,7 +24,7 @@ EnemyManager* EnemyManager::Get()
 
 void EnemyManager::Load()
 {
-	const int maxEnemies = 100;
+	const int maxEnemies = 40;
 	for (int i = 0; i < maxEnemies; ++i)
 	{
 		Enemy* newEnemy = new Enemy();
@@ -49,6 +49,7 @@ void EnemyManager::Update(float deltaTime)
 	mWaveTimer -= deltaTime;
 	if (mWaveTimer <= 0.0f)
 	{
+		kWaveSize = kWaveSize + 1;
 		SpawnEnemies(kWaveSize);
 		mWaveTimer = kWaveInterval;
 	}

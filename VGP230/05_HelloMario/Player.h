@@ -43,9 +43,9 @@ private:
 
 	// shooting cooldown (seconds)
 	float mShootCooldownTimer;
-	static constexpr float kShootCooldown = 0.5f;
+	static constexpr float kShootCooldown = 0.2f;
 	// ammo
 	int mAmmo;
-	static constexpr int kMaxAmmo = 10;
+	static constexpr int kMaxAmmo = 30;
 	static constexpr int kMaxHealth = 100;
 };
